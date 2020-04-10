@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>登陆界面</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<!--
+		<script>
+			var dirs=new Array();
+			var patterns=new Array();
+			function getPatternName()
+			{
+				var xmlhttp;
+				if (window.XMLHttpRequest)
+				{
+					//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+					xmlhttp=new XMLHttpRequest();
+				}
+				else
+				{
+					// IE6, IE5 浏览器执行代码
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange=function()
+				{
+					if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{   
+						dirs=xmlhttp.responseText.split(",");
+
+						for(var i=0;i<dirs.length;i++)
+						{
+							patterns.push(dirs[i].split(".")[1]);
+						}
+						console.log(patterns);
+
+					}
+				}
+				xmlhttp.open("GET","/getPatternName",true);
+				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xmlhttp.send(" ");
+			}
+		</script>
+		-->
+	</head>
+	<body >
+		<div class="jumbotron text-center">
+			<h1>人脸检测系统</h1> 
+		</div>
+		<div>
+			<ul class="nav nav-tabs nav-justified">
+				<li class="nav-item">
+					<a class="nav-link active"  href="/staticResource/html/currentPicture.html">当前画面</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"  href="/staticResource/html/faceRecog.html">捕捉人脸</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"  href="/staticResource/html/upLoadPattern.html" onclick="UploadPattern()">模式上传</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"  href="/staticResource/html/introduce.html">使用说明</a>
+				</li>
+			</ul>
+		</div>
+		<!--
+		<table align="center" style="text-align: center">
+			<tr>
+				<td>
+					<div class="container">          
+						<img src="/staticResource/data/machengpeng.jpg" class="rounded" alt="Cinque Terre" width="304" height="236"> 
+					</div>
+				</td>
+				<td>
+					<div class="container">          
+						<img src="/staticResource/data/machengpeng.jpg" class="rounded" alt="Cinque Terre" width="304" height="236"> 
+					</div>
+				</td>
+				<td>
+					<div class="container">          
+						<img src="/staticResource/data/machengpeng.jpg" class="rounded" alt="Cinque Terre" width="304" height="236"> 
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					马程鹏
+				</td>
+				<td>
+					周登芳
+				</td>
+				<td>
+					马应全
+				</td>
+			</tr>
+		</table>
+		-->
+		<table id="table" align="center" style="text-align: center">
+		</table>
+		<script>
+			var dirs=new Array();
+			var patterns=new Array();
+			getPatternName();
+			function getPatternName()
+			{
+					var xmlhttp;
+					if (window.XMLHttpRequest)
+					{
+						//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+						xmlhttp=new XMLHttpRequest();
+					}
+					else
+					{
+						// IE6, IE5 浏览器执行代码
+						xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					xmlhttp.onreadystatechange=function()
+					{
+						if (xmlhttp.readyState==4 && xmlhttp.status==200)
+						{   
+							dirs=xmlhttp.responseText.split(",");
+
+							for(var i=0;i<dirs.length;i++)
+							{
+								patterns.push(dirs[i].split(".")[1]);
+							}
+							showFaces();
+							console.log(patterns);
+
+						}
+					}
+					xmlhttp.open("GET","/getPatternName",true);
+					xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+					xmlhttp.send(" ");
+			}
+			function showFaces()
+			{
+				var element = document.getElementById("table");
+				for (var i=0; i<patterns.length;i++)
+				{
+					if(i%3==0)
+					{
+						var tr=document.createElement("tr")
+						element.appendChild(tr);
+					}
+					var td=document.createElement("td");
+					tr.appendChild(td)
+					var div=document.createElement("div");
+					div.setAttribute("class","container");
+					td.appendChild(div)
+
+					var img = document.createElement("img");
+					img.src="/staticResource/data/"+patterns[i]+".jpg";
+					img.setAttribute("id",patterns[i])
+					img.setAttribute("class","rounded");
+					img.setAttribute("width","304");
+					img.setAttribute("height","236");
+
+					var p=document.createElement("p");
+					p.textContent=patterns[i];
+
+					div.appendChild(img)
+					div.appendChild(p)
+				}
+			}
+		</script>
+	</body>
+</html>
