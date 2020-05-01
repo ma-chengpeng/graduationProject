@@ -8,21 +8,33 @@
 		<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<script src="/staticResource/javascript/ajax.js"></script>
+		<style>
+			#showPatterns{
+				width: 60%;
+				height: 200px;
+				overflow: auto;
+			}
+			td{
+				margin-bottom: 10px;
+				width: 60%;
+			
+			}
+		</style>
 	</head>
 	<body>
 		<div class="jumbotron text-center">
 			<h1>人脸检测系统</h1> 
 		</div>
-		<div>
+		<div style="margin-bottom: 30px;">
 			<ul class="nav nav-tabs nav-justified">
 				<li class="nav-item">
-					<a class="nav-link active"  href="/staticResource/html/currentPicture.html">当前画面</a>
+					<a class="nav-link"  href="/staticResource/html/currentPicture.html">当前画面</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link"  href="/staticResource/html/faceRecog.html">捕捉人脸</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link"  href="/staticResource/html/upLoadPattern.html" onclick="UploadPattern()">模式上传</a>
+					<a class="nav-link active"  href="/staticResource/html/upLoadPattern.html" onclick="UploadPattern()">模式上传</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link"  href="/staticResource/html/introduce.html">使用说明</a>
@@ -31,9 +43,9 @@
 		</div>
 		<div class="row">
 			<div class="col-6" align='center'>
-				<button type="button" onclick="getPatterns()">查询模式</button>
+				<button type="button" onclick="getPatterns()" style="width: 60%; background-color:greenyellow; margin-bottom: 30px;">查询模式</button>
 				<div id="showPatterns"></div>
-				<div id="showResult"></div>
+				<div id="showResult" style="background-color: greenyellow;width: 60%; margin-top: 30px;"></div>
 			</div>
 			<div class="col-6" align='center'>
 				<form  name="file-form" action="/upload" method="post" enctype="multipart/form-data" class="file-upload">

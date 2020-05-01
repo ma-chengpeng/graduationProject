@@ -10,10 +10,10 @@
 		<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<script src="/staticResource/javascript/ajax.js"></script>
 		<script> 
-		   	setInterval("update()",1000); //指定3秒刷新一次
+		   	setInterval("update()",2000); //指定3秒刷新一次
 			function update(){ 
 				let content=document.getElementById('currentPicture'); 
-				content.innerHTML="<img src='/staticResource/data/current.jpg?"+Math.random()+" class='rounded' alt='Cinque Terre' width='608' height='472'>";
+				content.innerHTML="<img src='/staticResource/data/current.jpg?"+Math.random()+" class='rounded' alt='Cinque Terre' width='405' height='315'>";
 			}
 		</script>
 	</head>
@@ -21,7 +21,7 @@
 		<div class="jumbotron text-center">
 			<h1>人脸检测系统</h1> 
 		</div>
-		<div>
+		<div style="margin-bottom: 30px;">
 			<ul class="nav nav-tabs nav-justified">
 				<li class="nav-item">
 					<a class="nav-link active"  href="/staticResource/html/currentPicture.html">当前画面</a>

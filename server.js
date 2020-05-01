@@ -47,6 +47,12 @@ app.post('/upload',function(req,res){
 
 app.post('/delModel',urlEncodeParser,function(req,res){
 	console.log(req.body.patternName);
+	fs.unlink(__dirname+"/staticResource/model/"+req.body.patternName,function(err){
+		if(err){
+			console.log(err);
+		}
+		console.log("文件删除成功");
+	});
 	res.send("删除成功");
 })
 
